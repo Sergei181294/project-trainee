@@ -1,7 +1,7 @@
 let form = document.getElementById("form");
 let inputEmail = document.querySelector(".js-input-email")
 let formInput = document.querySelector(".js-input")
-let btn = document.querySelector(".input-btn")
+let btnEmail = document.querySelector(".input-btn")
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -40,30 +40,31 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 const validateEmail = (email) => {
+  
   let re = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
   return re.test(String(email).toLowerCase());
 }
 
-btn.addEventListener("click", (e) => {
+btnEmail.addEventListener("click", (e) => {
   e.preventDefault()
   let emailVal = inputEmail.value;
 
   const validate = (input) => {
     if (input.value === "") {
       input.classList.add("error");
-      console.log("input invalid")
+      alert("email invalid")
       return false;
     } else {
       input.classList.remove("error")
     }
 
     if (!validateEmail(emailVal)) {
-      console.log("email not valid")
+      alert("email invalid")
       input.classList.add("error");
       return false;
     } else {
       input.classList.remove("error")
-      console.log("valid email")
+      sendEmail(emailVal)
     }
 
   }
