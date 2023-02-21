@@ -1,7 +1,19 @@
+let popupLink = document.querySelector(".popup__link")
+let body = document.querySelector("body")
+
 let form = document.getElementById("form");
 let inputEmail = document.querySelector(".js-input-email")
 let formInput = document.querySelector(".js-input")
 let btnEmail = document.querySelector(".input-btn")
+
+let popup = document.querySelector(".popup")
+let closeElem = document.querySelectorAll(".close-popup")
+let popupTitle = document.querySelector(".popup__title")
+let popupSubscribe = document.querySelector(".popup__text")
+
+let unlock = true;
+
+const timeout = 800;
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -40,9 +52,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 const validateEmail = (email) => {
-  
+
   let re = /^[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*@([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?\.)*(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|[a-z][a-z])$/;
   return re.test(String(email).toLowerCase());
+}
+
+const closePopup = () => {
+  closeElem.forEach(item => item.addEventListener("click", () => {
+    popup.classList.remove("open")
+  }))
+}
+
+const showSuccessPopup = () => {
+  popupTitle.innerText = "SUCCESS!"
+  popupSubscribe.innerText = "You have successfully subscribed to the email newsletter"
+  popup.classList.add("open");
+  closePopup();
+}
+
+const showErrorPopup = () => {
+  popupTitle.innerText = "ERROR!"
+  popupSubscribe.innerText = "Something went wrong.."
+  popup.classList.add("open");
+  closePopup();
 }
 
 btnEmail.addEventListener("click", (e) => {
@@ -64,9 +96,71 @@ btnEmail.addEventListener("click", (e) => {
       return false;
     } else {
       input.classList.remove("error")
-      sendEmail(emailVal)
+      sendEmail(emailVal) ? showSuccessPopup() : showErrorPopup()
     }
-
   }
   validate(formInput)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const popupName = popupLink.getAttribute("href").replace("#", "");
+// const currentPopup = document.getElementById(popupName);
+
+
+
+// const popupCloseIcon = document.querySelector(".close-popup");
+// popupCloseIcon.addEventListener("click", (e) => {
+//   popupClose(popupCloseIcon.closest(".popup"));
+//   e.preventDefault();
+// })
+
+
+// const popupOpen = (currentPopup) => {
+//   if (currentPopup && unlock) {
+//     const popupActive = document.querySelector(".popup.open");
+//     if (popupActive) {
+//       popupClose(popupActive, false);
+//     }
+//     unlock = false;
+//     setTimeout(() => {
+//       unlock = true;
+//     }, timeout)
+//     currentPopup.classList.add("open");
+//     currentPopup.addEventListener("click", (e) => {
+//       if (!e.target.closest("popup__content")) {
+//         popupClose(e.target.closest(".popup"))
+//       }
+//     })
+//   }
+// }
+
+
