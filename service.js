@@ -23,10 +23,11 @@ const sendEmail = (email) => {
                      email
               },
               success: (data) => {
-                     console.log(data)
+                     showSuccessPopup()
                      return data;      
               },
               error: (error) => {
+                     showErrorPopup()
                      return error;
 
               }

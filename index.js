@@ -96,7 +96,7 @@ btnEmail.addEventListener("click", (e) => {
       return false;
     } else {
       input.classList.remove("error")
-      sendEmail(emailVal) ? showSuccessPopup() : showErrorPopup()
+      sendEmail(emailVal)
     }
   }
   validate(formInput)
