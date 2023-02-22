@@ -1,6 +1,3 @@
-
-
-
 function ajax_response(response, success) {
        return function (params) {
               if (success) {
